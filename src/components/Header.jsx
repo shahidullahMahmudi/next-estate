@@ -2,7 +2,9 @@
 import Link from 'next/link';
 import {FaSearch} from 'react-icons/fa'
 import { useSearchParams,useRouter } from 'next/navigation';
+import {SignedIn,SignedOut,UserButton} from '@clerk/nextjs'
 import { useEffect, useState } from 'react';
+
 const Header = () => {
     const searchParams=useSearchParams();
     const router=useRouter();
@@ -46,11 +48,18 @@ const Header = () => {
                     <Link href='/about'>
                     <li className='hidden md:inline text-slate-700 hover:underline' >About</li>
                     </Link>
+                    <SignedIn>
+                        <UserButton/>
+                        
+                    </SignedIn>
+                    <SignedOut>
+
                      <Link href='/sign-in'>
               <li className='hidden md:inline text-slate-700 hover:underline'>
                 Sign In
               </li>
             </Link>
+                    </SignedOut>
 
 
                 </ul>
